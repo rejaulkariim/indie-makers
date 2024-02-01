@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import Image from 'next/image';
+import FeedbackDialog from './FeedbackDialog';
 import MaxWidthWrapper from './MaxWidthWrapper';
 
 const Navbar = () => {
@@ -26,9 +27,7 @@ const Navbar = () => {
 
           <div>
             <div className="flex gap-2 items-center">
-              <span className="bg-gray-200 px-3 py-2 text-xs rounded-full">
-                Feedback
-              </span>
+              <FeedbackDialog />
               <span className="bg-gray-200 px-3 py-2 text-xs rounded-full">
                 Beta
               </span>
@@ -44,7 +43,7 @@ const Navbar = () => {
                       className="h-8 w-8 object-contain rounded-full"
                     />
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-72 mr-10" side="bottom">
+                  <DropdownMenuContent className="w-72 mr-8" side="bottom">
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup>
