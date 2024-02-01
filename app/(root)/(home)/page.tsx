@@ -1,7 +1,10 @@
 const HomePage = () => {
   return (
     <div>
-      <h1>Dev Unity an open source dev support system</h1>
+      <h1>
+        Discover and rate the best events around the world. Join our community
+        today!
+      </h1>
     </div>
   );
 };

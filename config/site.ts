@@ -1,9 +1,10 @@
 import { SiteConfig } from '@/types';
 
 export const siteConfig: SiteConfig = {
-  name: 'dev-unity',
-  description: 'An open source application where developer helps developer',
-  url: 'http://localhost:3000',
+  name: 'Event Rater',
+  description:
+    'Discover and rate the best events around the world. Join our community today!',
+  url: 'https://www.eventrater.org',
   ogImage: '',
   links: {
     twitter: '',
