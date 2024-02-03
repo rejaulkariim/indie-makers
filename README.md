@@ -1,6 +1,6 @@
 # Event Rater
 
-An Open Source developer community where developer helps developers.
+An Open Source event rater app, discover and rate the best events around the world.
 
 ## Contributing
 
