@@ -8,7 +8,7 @@ const Navbar = () => {
       <MaxWidthWrapper>
         <nav className="flex justify-between items-center w-full">
           <div>
-            <h1 className="font-bold">Event Rater</h1>
+            <h1 className="font-bold">Indie Makers</h1>
           </div>
 
           <div className="flex gap-2 items-center">

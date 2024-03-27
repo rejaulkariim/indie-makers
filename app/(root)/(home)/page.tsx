@@ -1,11 +1,9 @@
 import Hero from '@/components/shared/Hero';
 
-const HomePage = () => {
+export default async function HomePage() {
   return (
     <>
       <Hero />
     </>
   );
-};
-
-export default HomePage;
+}

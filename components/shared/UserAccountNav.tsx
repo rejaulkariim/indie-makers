@@ -8,31 +8,36 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { authOptions } from '@/lib/auth';
 import { AlignCenter } from 'lucide-react';
+import { getServerSession } from 'next-auth';
 import Image from 'next/image';
+import LoginButton from './button/LoginButton';
+import LogoutButton from './button/LogoutButton';
 
-const UserAccountNav = () => {
-  const user = true;
+const UserAccountNav = async () => {
+  const currentUser = await getServerSession(authOptions);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        {user ? (
+        {currentUser ? (
           <Image
-            src="/rejaul.png"
+            src={currentUser?.user?.image || ''}
             height={100}
             width={100}
-            alt="user"
+            alt="currentUser"
             className="h-8 w-8 object-contain rounded-full cursor-pointer focus:ring"
           />
         ) : (
-          <div className="p-2 border rounded-full">
+          <div className="p-2 border rounded-full cursor-pointer">
             <AlignCenter className="h-4 w-4" />
           </div>
         )}
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className="w-64 mr-8" side="bottom">
-        {user ? (
+        {currentUser ? (
           <>
             <DropdownMenuLabel>Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
@@ -55,10 +60,7 @@ const UserAccountNav = () => {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              Log Out
-              <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
-            </DropdownMenuItem>
+            <LogoutButton />
           </>
         ) : (
           <>
@@ -79,8 +81,7 @@ const UserAccountNav = () => {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              Login
-              <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+              <LoginButton />
             </DropdownMenuItem>
           </>
         )}
