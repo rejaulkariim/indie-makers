@@ -51,11 +51,7 @@ const WishlistForm = () => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="Email"
-                  {...field}
-                  className="border-2 border-purple-400"
-                />
+                <Input placeholder="Email" {...field} />
               </FormControl>
               <FormDescription className="text-sm md:text-base text-muted-foreground">
                 10 indie makers have already joined 🚀

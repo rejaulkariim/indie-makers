@@ -5,13 +5,14 @@ const Hero = () => {
   return (
     <section className="mt-10 flex justify-center">
       <MaxWidthWrapper>
-        <div className="text-center max-w-3xl mx-auto space-y-4  mt-16">
+        <div className="text-center max-w-2xl mx-auto space-y-4  mt-16">
           <h1 className="text-3xl md:text-5xl font-bold">
             Spotlight for <span className="text-primary">Indie Makers</span>
           </h1>
+
           <p className="text-lg text-foreground/80">
-            Join the inspired community and showcase your creations to the world
-            in just 30 seconds!
+            Join the thousands of inspiring indie makers community and showcase
+            your creations to the world in just 30 seconds!
           </p>
 
           {/* <div className="max-w-2xl mx-auto flex flex-wrap gap-4">

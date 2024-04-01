@@ -1,13 +1,13 @@
-import { SiteConfig } from '@/types';
-
-export const siteConfig: SiteConfig = {
-  name: 'Event Rater',
+export const siteConfig = {
+  name: 'Indie Makers',
+  url: 'https://indiemakers.me',
+  ogImage: 'https://indiemakers.me/og.png',
   description:
-    'Discover and rate the best events around the world. Join our community today!',
-  url: 'https://www.eventrater.org',
-  ogImage: '',
+    'Spotlight for indie maker to showcase your creations to the globe in 30 seconds. Open Source.',
   links: {
-    twitter: '',
-    github: '',
+    twitter: 'https://twitter.com/indiemakersHQ',
+    github: 'https://github.com/rejaulkariim/indie-makers',
   },
 };
+
+export type SiteConfig = typeof siteConfig;
