@@ -1,10 +1,16 @@
+import { db } from '@/lib/db';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { NextAuthOptions, getServerSession } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-import { db } from './db';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db as any),
+  session: {
+    strategy: 'jwt',
+  },
+  pages: {
+    signIn: '/login',
+  },
 
   providers: [
     GoogleProvider({
@@ -12,6 +18,44 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
   ],
+
+  callbacks: {
+    async session({ token, session }) {
+      if (token) {
+        session.user.id = token.id;
+        session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.image = token.picture;
+        session.user.role = token.role;
+      }
+      return session;
+    },
+
+    async jwt({ token, user }) {
+      const dbUser = await db.user.findFirst({
+        where: {
+          email: token.email !== null ? token.email : undefined,
+        },
+      });
+
+      if (!dbUser) {
+        if (user) {
+          token.id = user!.id;
+        }
+        return token;
+      }
+      return {
+        id: dbUser.id,
+        name: dbUser.name,
+        email: dbUser.email,
+        picture: dbUser.image,
+        role: dbUser.role,
+      };
+    },
+    redirect() {
+      return '/onboarding';
+    },
+  },
 };
 
-export const useCurrentUser = getServerSession(authOptions);
+export const getAuthSession = () => getServerSession(authOptions);

@@ -17,6 +17,7 @@ import LogoutButton from './button/LogoutButton';
 
 const UserAccountNav = async () => {
   const currentUser = await getServerSession(authOptions);
+  console.log(currentUser);
 
   return (
     <DropdownMenu>
@@ -26,7 +27,7 @@ const UserAccountNav = async () => {
             src={currentUser?.user?.image || ''}
             height={100}
             width={100}
-            alt="currentUser"
+            alt={currentUser?.user?.name || 'User'}
             className="h-8 w-8 object-contain rounded-full cursor-pointer focus:ring"
           />
         ) : (
