@@ -13,7 +13,7 @@ const Hero = () => {
           </h1>
           <p className="text-lg text-foreground/80">
             Spotlight for indie makers to showcase their creations to the globe
-            in 30 seconds by managing widgets, and insights available for free.
+            in 30 seconds by managing widgets for free, insights available.
           </p>
 
           <div className="max-w-2xl mx-auto flex flex-wrap gap-4">
@@ -28,7 +28,7 @@ const Hero = () => {
           </div>
           <div className="mt-10">
             <Button variant="outline" asChild>
-              <Link href="/register">
+              <Link href="/onboarding">
                 Join the most creative community &rarr;
               </Link>
             </Button>

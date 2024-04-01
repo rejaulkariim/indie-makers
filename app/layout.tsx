@@ -1,3 +1,4 @@
+import { Toaster } from '@/components/ui/sonner';
 import { GeistSans } from 'geist/font/sans';
 import type { Metadata } from 'next';
 import './globals.css';
@@ -15,7 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={GeistSans.className}>{children}</body>
+      <body className={GeistSans.className}>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }

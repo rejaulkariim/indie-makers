@@ -48,3 +48,7 @@
     --ring: 263.4 70% 50.4%;
   }
 }
+
+.section-padding {
+  @apply py-6 sm:py-10;
+}

@@ -4,7 +4,7 @@ import UserAccountNav from './UserAccountNav';
 
 const Navbar = () => {
   return (
-    <header className="h-14 flex justify-center items-center w-full">
+    <header className="bg-background h-14 flex justify-center items-center w-full fixed inset-0 border-b z-40">
       <MaxWidthWrapper>
         <nav className="flex justify-between items-center w-full">
           <div>
