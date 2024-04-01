@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -14,12 +13,14 @@ import { Input } from '@/components/ui/input';
 import { createWishlist } from '@/lib/actions/wishlist.action';
 import { wishlistValidationSchema } from '@/lib/validation/wishlist.validation';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import * as z from 'zod';
+import { Icons } from '../shared/icons/Icons';
 
 const WishlistForm = () => {
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const form = useForm<z.infer<typeof wishlistValidationSchema>>({
     resolver: zodResolver(wishlistValidationSchema),
@@ -29,15 +30,21 @@ const WishlistForm = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof wishlistValidationSchema>) => {
-    const res = await createWishlist(data.email);
+    try {
+      setLoading(true);
+      const res = await createWishlist(data.email);
+      if (res?.success) {
+        setLoading(false);
+        form.reset();
+        toast.success(res.message);
+      }
 
-    if (res?.success) {
-      form.reset();
-      toast.success(res.message);
-    }
-
-    if (!res?.success) {
-      toast.error(res?.message);
+      if (!res?.success) {
+        setLoading(false);
+        toast.error(res?.message);
+      }
+    } catch (error) {
+      toast.error('Something went wrong');
     }
   };
 
@@ -53,15 +60,12 @@ const WishlistForm = () => {
               <FormControl>
                 <Input placeholder="Email" {...field} />
               </FormControl>
-              <FormDescription className="text-sm md:text-base text-muted-foreground">
-                10 indie makers have already joined 🚀
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button type="submit" className="w-full sm:w-auto">
-          {/* {loading && <Icons.spinner className="size-4 mr-2 animate-spin" />} */}
+          {loading && <Icons.spinner className="size-4 mr-2 animate-spin" />}
           Get Early Access
         </Button>
       </form>

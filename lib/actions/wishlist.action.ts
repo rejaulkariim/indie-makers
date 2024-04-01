@@ -23,3 +23,16 @@ export async function createWishlist(email: string) {
     console.log(error);
   }
 }
+
+export async function getWishlist() {
+  try {
+    const wishlist = await db.wishlist.findMany();
+
+    return {
+      success: true,
+      data: JSON.parse(JSON.stringify(wishlist)),
+    };
+  } catch (error) {
+    console.log(error);
+  }
+}

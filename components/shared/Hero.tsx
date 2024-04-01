@@ -1,7 +1,12 @@
-import WishlistForm from '../form/WishlistForm';
-import MaxWidthWrapper from './MaxWidthWrapper';
+import WishlistForm from '@/components/form/WishlistForm';
+import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
+import { Skeleton } from '@/components/ui/skeleton';
+import { getWishlist } from '@/lib/actions/wishlist.action';
+import { Suspense } from 'react';
 
-const Hero = () => {
+const Hero = async () => {
+  const wishlist = await getWishlist();
+
   return (
     <section className="mt-10 flex justify-center">
       <MaxWidthWrapper>
@@ -11,8 +16,8 @@ const Hero = () => {
           </h1>
 
           <p className="text-lg text-foreground/80">
-            Join the thousands of inspiring indie makers community and showcase
-            your creations to the world in just 30 seconds!
+            Join thousands of inspiring indie makers community, showcase your
+            creations in just 30 seconds! get support and feedback.
           </p>
 
           {/* <div className="max-w-2xl mx-auto flex flex-wrap gap-4">
@@ -33,7 +38,15 @@ const Hero = () => {
             </Button>
           </div> */}
         </div>
-        <div className="max-w-xl mx-auto">
+        <div className="max-w-xl mx-auto my-10">
+          <Suspense
+            fallback={<Skeleton className="w-[250px] h-[20px] rounded-full" />}
+          >
+            {wishlist?.data.length > 0 && (
+              <p> {wishlist?.data.length} indie makers in the waitlist 🚀</p>
+            )}
+          </Suspense>
+
           <WishlistForm />
         </div>
       </MaxWidthWrapper>
