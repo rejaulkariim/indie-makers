@@ -1,6 +1,5 @@
 'use client';
 
-import { Icons } from '@/components/shared/icons/Icons';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -15,13 +14,12 @@ import { Input } from '@/components/ui/input';
 import { createWishlist } from '@/lib/actions/wishlist.action';
 import { wishlistValidationSchema } from '@/lib/validation/wishlist.validation';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import * as z from 'zod';
 
 const WishlistForm = () => {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const form = useForm<z.infer<typeof wishlistValidationSchema>>({
     resolver: zodResolver(wishlistValidationSchema),
@@ -67,7 +65,7 @@ const WishlistForm = () => {
           )}
         />
         <Button type="submit" className="w-full sm:w-auto">
-          {loading && <Icons.spinner className="size-4 mr-2 animate-spin" />}
+          {/* {loading && <Icons.spinner className="size-4 mr-2 animate-spin" />} */}
           Get Early Access
         </Button>
       </form>
