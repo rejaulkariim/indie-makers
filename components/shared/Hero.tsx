@@ -1,22 +1,20 @@
-import { Button } from '@/components/ui/button';
-import Image from 'next/image';
-import Link from 'next/link';
+import WishlistForm from '../form/WishlistForm';
 import MaxWidthWrapper from './MaxWidthWrapper';
 
 const Hero = () => {
   return (
-    <section className="mt-10">
+    <section className="mt-10 flex justify-center">
       <MaxWidthWrapper>
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <h1 className="text-3xl font-bold">
-            Join thousands of inspiring indie makers
+        <div className="text-center max-w-3xl mx-auto space-y-4  mt-16">
+          <h1 className="text-3xl md:text-5xl font-bold">
+            Spotlight for <span className="text-primary">Indie Makers</span>
           </h1>
           <p className="text-lg text-foreground/80">
-            Spotlight for indie makers to showcase their creations to the globe
-            in 30 seconds by managing widgets for free, insights available.
+            Join the inspired community and showcase your creations to the world
+            in just 30 seconds!
           </p>
 
-          <div className="max-w-2xl mx-auto flex flex-wrap gap-4">
+          {/* <div className="max-w-2xl mx-auto flex flex-wrap gap-4">
             <Image
               src="/rejaul.png"
               height={80}
@@ -32,7 +30,10 @@ const Hero = () => {
                 Join the most creative community &rarr;
               </Link>
             </Button>
-          </div>
+          </div> */}
+        </div>
+        <div className="max-w-xl mx-auto">
+          <WishlistForm />
         </div>
       </MaxWidthWrapper>
     </section>

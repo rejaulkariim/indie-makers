@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={GeistSans.className}>
         {children}
-        <Toaster />
+        <Toaster richColors position="top-right" />
       </body>
     </html>
   );
