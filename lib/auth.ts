@@ -25,7 +25,7 @@ export const authOptions: NextAuthOptions = {
         session.user.id = token.id;
         session.user.name = token.name;
         session.user.email = token.email;
-        session.user.credits = token.credits;
+        session.user.credits = token.credits as number;
         session.user.image = token.picture;
         session.user.role = token.role;
       }
