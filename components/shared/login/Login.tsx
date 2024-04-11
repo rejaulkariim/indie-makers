@@ -1,5 +1,3 @@
-import { Button, buttonVariants } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import LoginButton from '../button/LoginButton';
 
@@ -13,17 +11,17 @@ export default function Login() {
           Enter your email to sign in to your account
         </p>
       </div>
-      <Button
+      {/* <Button
         type="button"
         className={cn(buttonVariants({ variant: 'default' }))}
       >
-        {/* {isGoogleLoading ? (
+        {isGoogleLoading ? (
         //   <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
         //   <Icons.google className="mr-2 h-4 w-4" />
-        )}{' '} */}
+        )}{' '}
         Google
-      </Button>
+      </Button> */}
       <LoginButton />
       <p className="px-8 text-center text-sm text-muted-foreground">
         <Link

@@ -1,5 +1,7 @@
 import { Toaster } from '@/components/ui/sonner';
 import { siteConfig } from '@/config/site';
+import { cn } from '@/lib/utils';
+import '@uploadthing/react/styles.css';
 import { GeistSans } from 'geist/font/sans';
 import type { Metadata, Viewport } from 'next';
 import { ThemeProvider } from 'next-themes';
@@ -71,16 +73,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={GeistSans.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-          <Toaster richColors position="top-right" />
-        </ThemeProvider>
+      <body
+        className={cn(
+          `relative h-full font-sans antialiased`,
+          GeistSans.className
+        )}
+      >
+        <main className="relative flex flex-col min-h-screen">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div className="flex-grow flex-1">{children}</div>
+            <Toaster richColors position="top-right" />
+          </ThemeProvider>
+        </main>
       </body>
     </html>
   );

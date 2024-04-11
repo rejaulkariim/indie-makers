@@ -25,6 +25,7 @@ export const authOptions: NextAuthOptions = {
         session.user.id = token.id;
         session.user.name = token.name;
         session.user.email = token.email;
+        session.user.credits = token.credits;
         session.user.image = token.picture;
         session.user.role = token.role;
       }
@@ -48,12 +49,13 @@ export const authOptions: NextAuthOptions = {
         id: dbUser.id,
         name: dbUser.name,
         email: dbUser.email,
+        credits: dbUser.credits,
         picture: dbUser.image,
         role: dbUser.role,
       };
     },
     redirect() {
-      return '/onboarding';
+      return '/';
     },
   },
 };
