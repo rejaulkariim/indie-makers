@@ -49,6 +49,19 @@
   }
 }
 
+@layer base {
+  * {
+    @apply border-border scroll-smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
 .section-padding {
   @apply py-6 sm:py-10;
+}
+
+.paragraph {
+  @apply text-sm sm:text-base text-foreground dark:text-muted-foreground;
 }

@@ -1,53 +1,30 @@
-import WishlistForm from '@/components/form/WishlistForm';
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
-import { Skeleton } from '@/components/ui/skeleton';
-import { getWishlist } from '@/lib/actions/wishlist.action';
-import { Suspense } from 'react';
+import { getProducts } from '@/lib/actions/product.action';
+import HomeSlider from './slaider/HomeSlider';
 
 const Hero = async () => {
-  const wishlist = await getWishlist();
+  const newProducts = await getProducts('NEW');
+  const featuredProducts = await getProducts('FEATURED');
+
+  console.log(newProducts, 'newProducts');
+  console.log(featuredProducts, 'featuredProducts');
 
   return (
-    <section className="mt-10 flex justify-center">
+    <section className="section-padding">
       <MaxWidthWrapper>
-        <div className="text-center max-w-2xl mx-auto space-y-4  mt-16">
-          <h1 className="text-3xl md:text-5xl font-bold">
-            Spotlight for <span className="text-primary">Indie Makers</span>
+        <div className="text-center space-y-4">
+          <h1 className="text-2xl sm:text-4xl font-bold">
+            Find the best tools made by{' '}
+            <span className="text-purple-600">indie makers</span>
           </h1>
-
-          <p className="text-lg text-foreground/80">
-            Join thousands of inspiring indie makers community, showcase your
-            creations in just 30 seconds! get support and feedback.
+          <p className="paragraph">
+            The most complete tools database. Discover useful tools for all your
+            needs. Updated daily.
           </p>
-
-          {/* <div className="max-w-2xl mx-auto flex flex-wrap gap-4">
-            <Image
-              src="/rejaul.png"
-              height={80}
-              width={80}
-              alt="users"
-              priority
-              className="rounded-full"
-            />
-          </div>
-          <div className="mt-10">
-            <Button variant="outline" asChild>
-              <Link href="/onboarding">
-                Join the most creative community &rarr;
-              </Link>
-            </Button>
-          </div> */}
         </div>
-        <div className="max-w-xl mx-auto my-10">
-          <Suspense
-            fallback={<Skeleton className="w-[250px] h-[20px] rounded-full" />}
-          >
-            {wishlist?.data.length > 0 && (
-              <p> {wishlist?.data.length} indie makers in the waitlist 🚀</p>
-            )}
-          </Suspense>
 
-          <WishlistForm />
+        <div className="my-20">
+          <HomeSlider />
         </div>
       </MaxWidthWrapper>
     </section>
