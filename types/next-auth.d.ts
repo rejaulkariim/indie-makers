@@ -16,6 +16,7 @@ declare module 'next-auth' {
     user: User & {
       id: UserId;
       role: UserRole;
+      credits: number;
     };
   }
 }

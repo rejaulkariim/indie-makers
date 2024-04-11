@@ -416,11 +416,11 @@ const SubmitProductForm = ({ type }: TProductForm) => {
           className="primary-gradient w-fit !text-light-900"
           disabled={isSubmitting}
         >
-          {isSubmitting ? (
+          {/* {isSubmitting ? (
             <>{type === 'Edit' ? 'Editing...' : 'Posting...'}</>
           ) : (
             <>{type === 'Edit' ? 'Edit Question' : 'Submit'}</>
-          )}
+          )} */}
         </Button>
       </form>
     </Form>

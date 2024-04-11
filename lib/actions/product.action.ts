@@ -60,20 +60,20 @@ export async function getProducts(productType: string) {
 }
 
 // Get a single product
-export async function getProduct(slug: string) {
-  try {
-    const product = await db.product.findUnique({
-      where: {
-        slug,
-      },
-    });
+// export async function getProduct(slug: string) {
+//   try {
+//     const product = await db.product.findUnique({
+//       where: {
+//         slug,
+//       },
+//     });
 
-    return {
-      success: true,
-      message: 'Product retrived successfully',
-      data: product,
-    };
-  } catch (error) {
-    console.log(error);
-  }
-}
+//     return {
+//       success: true,
+//       message: 'Product retrived successfully',
+//       data: product,
+//     };
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
