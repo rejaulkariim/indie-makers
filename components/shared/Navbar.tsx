@@ -1,10 +1,14 @@
 import { Icons } from '@/components/shared/icons/Icons';
 import { siteConfig } from '@/config/site';
 import Link from 'next/link';
+import { getAuthSession } from '../../lib/auth';
 import MaxWidthWrapper from './MaxWidthWrapper';
 import UserAvaters from './avaters/UserAvaters';
+import LoginButton from './button/LoginButton';
 
-const Navbar = () => {
+const Navbar = async () => {
+  const session = await getAuthSession();
+
   return (
     <header className="bg-background h-14 flex justify-center items-center w-full fixed inset-0 z-40 border-b border-muted">
       <MaxWidthWrapper>
@@ -61,9 +65,7 @@ const Navbar = () => {
 
             <ModeToggle /> */}
 
-            <div>
-              <UserAvaters />
-            </div>
+            <div>{session?.user ? <UserAvaters /> : <LoginButton />}</div>
           </div>
         </nav>
       </MaxWidthWrapper>
