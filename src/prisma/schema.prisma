@@ -64,7 +64,6 @@ model User {
   image         String?
   bio           String?
   location      String?
-  portfolioWebsite     String?
   savedProducts String[]
   credits       Int       @default(10)
   role          UserRole  @default(USER) 
