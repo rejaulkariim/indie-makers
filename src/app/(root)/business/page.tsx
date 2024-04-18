@@ -1,4 +1,3 @@
-import SubmitProductForm from '@/components/form/SubmitProductForm';
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
 import { siteConfig } from '@/config/site';
 import Link from 'next/link';
@@ -16,7 +15,7 @@ const BusinessPage = () => {
             </p>
           </div>
         </Link>
-        <SubmitProductForm />
+        {/* <SubmitProductForm /> */}
       </MaxWidthWrapper>
     </section>
   );
