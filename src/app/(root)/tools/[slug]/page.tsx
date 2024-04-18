@@ -8,7 +8,6 @@ import Link from 'next/link';
 import { TwitterIcon, TwitterShareButton } from 'react-share';
 
 const ProductDetailsPage = ({ params }: { params: { slug: string } }) => {
-  console.log(params.slug);
   const product = {
     name: 'App Brews',
     slug: 'app-brews',
@@ -35,7 +34,6 @@ const ProductDetailsPage = ({ params }: { params: { slug: string } }) => {
   return (
     <section className="section-padding">
       <MaxWidthWrapper>
-        ProductDetailsPage
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-9 h-full bg-background border rounded-xl overflow-hidden p-6">
             <div className="flex justify-between items-center h-auto">
@@ -45,11 +43,15 @@ const ProductDetailsPage = ({ params }: { params: { slug: string } }) => {
                 {product.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="inline-block  rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                    className="inline-block bg-primary rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
                   >
                     {tag}
                   </span>
                 ))}
+                <div>
+                  <p>Views</p>
+                  <p>Comments</p>
+                </div>
                 <div className="Demo__some-network">
                   <TwitterShareButton
                     url={product.websiteUrl}

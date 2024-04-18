@@ -19,13 +19,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { createProduct } from '@/lib/actions/product.action';
 import { Product } from '@prisma/client';
 import { X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
-import slugify from 'slugify';
-import { toast } from 'sonner';
 import { FileUploader } from '../shared/fileUploader/FileUploader';
 import { Badge } from '../ui/badge';
 import {
@@ -80,33 +77,33 @@ const SubmitProductForm = ({ type }: TProductForm) => {
       uploadedImageUrl = uploadedImages[0].url;
     }
 
-    if (type === 'Create') {
-      try {
-        setIsSubmitting(true);
-        const newProduct = await createProduct({
-          product: {
-            name: values.name,
-            slug: slugify(values.name, { lower: true }),
-            title: values.title,
-            description: values.description,
-            websiteUrl: values.websiteUrl,
-            pricingModel: values.pricingModel,
-            youtubeUrl: values.youtubeUrl,
-            imageUrl: uploadedImageUrl,
-          },
-          path: '/',
-        });
+    // if (type === 'Create') {
+    //   try {
+    //     setIsSubmitting(true);
+    //     {const newProduct = await createProduct({
+    //       product: {
+    //         name: values.name,
+    //         slug: slugify(values.name, { lower: true }),
+    //         title: values.title,
+    //         description: values.description,
+    //         websiteUrl: values.websiteUrl,
+    //         pricingModel: values.pricingModel,
+    //         youtubeUrl: values.youtubeUrl,
+    //         imageUrl: uploadedImageUrl,
+    //       },
+    //       path: '/',
+    //     });
 
-        if (newProduct) {
-          form.reset();
-          toast.success('Product created successfully!');
-        }
+    //     if (newProduct) {
+    //       form.reset();
+    //       toast.success('Product created successfully!');
+    //     }
 
-        console.log(newProduct, 'newProduct');
-      } catch (error: unknown) {
-        console.log(error);
-      }
-    }
+    //     console.log(newProduct, 'newProduct');
+    //   } catch (error: unknown) {
+    //     console.log(error);
+    //   }
+    // }
 
     // if (type === 'Update') {
     //   if (!eventId) {
@@ -421,6 +418,7 @@ const SubmitProductForm = ({ type }: TProductForm) => {
           ) : (
             <>{type === 'Edit' ? 'Edit Question' : 'Submit'}</>
           )} */}
+          Submit $29
         </Button>
       </form>
     </Form>

@@ -12,11 +12,11 @@ import Link from 'next/link';
 const ProductCard = ({ product }: { product: any }) => {
   return (
     <Card className="rounded-2xl border-2 border-accent">
-      {/* <Link
+      <Link
         href={`/tools/${product.slug}`}
         className="absolute inset-0"
         aria-hidden="true"
-      /> */}
+      />
       <CardHeader>
         <div className="overflow-hidden">
           <Image
