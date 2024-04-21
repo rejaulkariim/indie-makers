@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 
 import { checkoutCredits } from '@/lib/actions/transaction.action';
 
-import { toast } from 'sonner';
 import { Button } from '../ui/button';
 
 const Checkout = ({
@@ -35,14 +34,14 @@ const Checkout = ({
       // });
     }
 
-    if (query.get('canceled')) {
-      toast({
-        title: 'Order canceled!',
-        description: "Continue to shop around and checkout when you're ready",
-        duration: 5000,
-        className: 'error-toast',
-      });
-    }
+    // if (query.get('canceled')) {
+    //   toast({
+    //     title: 'Order canceled!',
+    //     description: "Continue to shop around and checkout when you're ready",
+    //     duration: 5000,
+    //     className: 'error-toast',
+    //   });
+    // }
   }, []);
 
   const onCheckout = async () => {

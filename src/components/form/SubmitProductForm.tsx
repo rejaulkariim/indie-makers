@@ -33,7 +33,7 @@ import {
   SelectValue,
 } from '../ui/select';
 
-import { checkoutProduct } from '@/lib/actions/transaction.action';
+// import { checkoutProduct } from '@/lib/actions/transaction.action';
 import { loadStripe } from '@stripe/stripe-js';
 
 loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
@@ -101,7 +101,7 @@ const SubmitProductForm = ({ type }: TProductForm) => {
       feeAmount: 29,
     };
 
-    await checkoutProduct();
+    // await checkoutProduct();
 
     // try {
     //   setIsSubmitting(true);
