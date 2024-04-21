@@ -114,3 +114,81 @@ export const products = [
     updatedAt: '2024-04-11T14:00:00.000Z',
   },
 ];
+
+export const plans = [
+  {
+    _id: 1,
+    name: 'Free',
+    icon: '/assets/icons/free-plan.svg',
+    price: 0,
+    credits: 10,
+    inclusions: [
+      {
+        label: '10 Free Credits',
+        isIncluded: true,
+      },
+      {
+        label: 'Basic Access to Services',
+        isIncluded: true,
+      },
+      {
+        label: 'Priority Customer Support',
+        isIncluded: false,
+      },
+      {
+        label: 'Priority Updates',
+        isIncluded: false,
+      },
+    ],
+  },
+  {
+    _id: 2,
+    name: 'Pro Package',
+    icon: '/assets/icons/free-plan.svg',
+    price: 49,
+    credits: 120,
+    inclusions: [
+      {
+        label: '120 Credits',
+        isIncluded: true,
+      },
+      {
+        label: 'Full Access to Services',
+        isIncluded: true,
+      },
+      {
+        label: 'Priority Customer Support',
+        isIncluded: true,
+      },
+      {
+        label: 'Priority Updates',
+        isIncluded: false,
+      },
+    ],
+  },
+  {
+    _id: 3,
+    name: 'Premium Package',
+    icon: '/assets/icons/free-plan.svg',
+    price: 199,
+    credits: 500,
+    inclusions: [
+      {
+        label: '500 Credits',
+        isIncluded: true,
+      },
+      {
+        label: 'Full Access to Services',
+        isIncluded: true,
+      },
+      {
+        label: 'Priority Customer Support',
+        isIncluded: true,
+      },
+      {
+        label: 'Priority Updates',
+        isIncluded: true,
+      },
+    ],
+  },
+];

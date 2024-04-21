@@ -1,4 +1,5 @@
 // import { createOrder } from '@/lib/actions/order.action';
+import { createProductIntoDb } from '@/lib/actions/product.action';
 import { NextResponse } from 'next/server';
 import stripe from 'stripe';
 
@@ -21,17 +22,22 @@ export async function POST(request: Request) {
 
   // CREATE
   if (eventType === 'checkout.session.completed') {
-    const { id, amount_total, metadata } = event.data.object;
+    const { metadata } = event.data.object;
 
-    const order = {
-      stripeId: id,
-      buyerId: metadata?.buyerId || '',
-      totalAmount: amount_total ? (amount_total / 100).toString() : '0',
-      createdAt: new Date(),
+    const product = {
+      name: metadata?.name,
+      slug: metadata?.slug,
+      title: metadata?.title,
+      description: metadata?.description,
+      websiteUrl: metadata?.websiteUrl,
+      pricingModel: metadata?.pricingModel,
+      youtubeUrl: metadata?.youtubeUrl,
+      imageUrl: metadata?.uploadedImageUrl,
     };
 
-    // const newOrder = await createOrder(order);
-    return NextResponse.json({ message: 'OK' });
+    const newProduct = await createProductIntoDb({ product });
+
+    return NextResponse.json({ message: 'OK', transaction: newProduct });
   }
 
   return new Response('', { status: 200 });

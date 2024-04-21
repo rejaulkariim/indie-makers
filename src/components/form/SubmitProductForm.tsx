@@ -22,7 +22,7 @@ import * as z from 'zod';
 import { Product } from '@prisma/client';
 import { X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FileUploader } from '../shared/fileUploader/FileUploader';
 import { Badge } from '../ui/badge';
 import {
@@ -33,6 +33,11 @@ import {
   SelectValue,
 } from '../ui/select';
 
+import { checkoutProduct } from '@/lib/actions/transaction.action';
+import { loadStripe } from '@stripe/stripe-js';
+
+loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+
 type TProductForm = {
   type: 'Create' | 'Update';
   product?: Product;
@@ -42,6 +47,20 @@ type TProductForm = {
 const SubmitProductForm = ({ type }: TProductForm) => {
   const editorRef = useRef(null);
   const router = useRouter();
+
+  useEffect(() => {
+    // Check to see if this is a redirect back from Checkout
+    const query = new URLSearchParams(window.location.search);
+    if (query.get('success')) {
+      console.log('Order placed! You will receive an email confirmation.');
+    }
+
+    if (query.get('canceled')) {
+      console.log(
+        'Order canceled -- continue to shop around and checkout when you’re ready.'
+      );
+    }
+  }, []);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
@@ -77,54 +96,36 @@ const SubmitProductForm = ({ type }: TProductForm) => {
       uploadedImageUrl = uploadedImages[0].url;
     }
 
-    // if (type === 'Create') {
-    //   try {
-    //     setIsSubmitting(true);
-    //     {const newProduct = await createProduct({
-    //       product: {
-    //         name: values.name,
-    //         slug: slugify(values.name, { lower: true }),
-    //         title: values.title,
-    //         description: values.description,
-    //         websiteUrl: values.websiteUrl,
-    //         pricingModel: values.pricingModel,
-    //         youtubeUrl: values.youtubeUrl,
-    //         imageUrl: uploadedImageUrl,
-    //       },
-    //       path: '/',
-    //     });
+    const tool = {
+      name: 'List a tool',
+      feeAmount: 29,
+    };
 
-    //     if (newProduct) {
-    //       form.reset();
-    //       toast.success('Product created successfully!');
-    //     }
+    await checkoutProduct();
 
-    //     console.log(newProduct, 'newProduct');
-    //   } catch (error: unknown) {
-    //     console.log(error);
-    //   }
-    // }
+    // try {
+    //   setIsSubmitting(true);
+    //   const newProduct = await createProductIntoDb({
+    //     product: {
+    //       name: values.name,
+    //       slug: slugify(values.name, { lower: true }),
+    //       title: values.title,
+    //       description: values.description,
+    //       websiteUrl: values.websiteUrl,
+    //       pricingModel: values.pricingModel,
+    //       youtubeUrl: values.youtubeUrl,
+    //       imageUrl: uploadedImageUrl,
+    //     },
+    //   });
 
-    // if (type === 'Update') {
-    //   if (!eventId) {
-    //     router.back();
-    //     return;
+    //   if (newProduct) {
+    //     form.reset();
+    //     toast.success('Product created successfully!');
     //   }
 
-    //   try {
-    //     const updatedEvent = await updateEvent({
-    //       userId,
-    //       event: { ...values, imageUrl: uploadedImageUrl, _id: eventId },
-    //       path: `/events/${eventId}`,
-    //     });
-
-    //     if (updatedEvent) {
-    //       form.reset();
-    //       router.push(`/events/${updatedEvent._id}`);
-    //     }
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
+    //   console.log(newProduct, 'newProduct');
+    // } catch (error: unknown) {
+    //   console.log(error);
     // }
   };
 

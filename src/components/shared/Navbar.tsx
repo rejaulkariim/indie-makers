@@ -26,7 +26,7 @@ const Navbar = async () => {
               Beta
             </span> */}
 
-            <Link href="/user/dashboard">Dashboard</Link>
+            {/* <Link href="/user/dashboard">Dashboard</Link> */}
             {/* 
             <Link
               href={siteConfig.links.github}

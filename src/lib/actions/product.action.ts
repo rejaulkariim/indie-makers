@@ -1,12 +1,10 @@
 'use server';
 
-import { CreateProductsParams } from '@/lib/actions/shared.types';
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { ProductStatus } from '@prisma/client';
-import { revalidatePath } from 'next/cache';
 
-export async function createProduct({ product, path }: CreateProductsParams) {
+export async function createProductIntoDb({ product }: any) {
   const session = await getAuthSession();
 
   // Check if user is logged in
@@ -22,9 +20,6 @@ export async function createProduct({ product, path }: CreateProductsParams) {
         createdBy: session.user.id,
       },
     });
-
-    // Revalidate the cache for the given path
-    revalidatePath(path);
 
     // Return the new product
     return {
