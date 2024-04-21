@@ -10,5 +10,4 @@ export interface CreateProductsParams {
     // tags: string[];
     youtubeUrl?: string | undefined;
   };
-  path: string;
 }

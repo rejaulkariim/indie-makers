@@ -34,5 +34,10 @@ export const dashboardConfig = {
       href: '/user/dashboard/settings',
       icon: 'settings',
     },
+    {
+      title: 'Credits',
+      href: '/user/dashboard/credits',
+      icon: 'settings',
+    },
   ],
 };
