@@ -15,23 +15,13 @@ export const dashboardConfig = {
 
   sidebarNav: [
     {
-      title: 'Dashboard',
-      href: '/user/dashboard',
-      icon: 'layoutDashboard',
-    },
-    {
       title: 'Submit Tool',
       href: '/user/dashboard/submit',
       icon: 'shoppingCartIcon',
     },
     {
-      title: 'Feature a Tool',
-      href: '/user/dashboard/',
-      icon: 'shoppingCartIcon',
-    },
-    {
-      title: 'Settings',
-      href: '/user/dashboard/settings',
+      title: 'Profile',
+      href: '/user/dashboard/profile',
       icon: 'settings',
     },
     {

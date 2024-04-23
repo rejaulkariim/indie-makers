@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import LoginButton from '../button/LoginButton';
 
 export default function Login() {
@@ -8,7 +7,7 @@ export default function Login() {
         {/* <Icons.logo className="mx-auto h-10 w-10 text-green-300 motion-safe:animate-bounce" /> */}
         <h1 className="text-2xl font-semibold tracking-tight">Welcome back</h1>
         <p className="text-sm text-muted-foreground">
-          Enter your email to sign in to your account
+          Login to your account with google
         </p>
       </div>
       {/* <Button
@@ -23,14 +22,6 @@ export default function Login() {
         Google
       </Button> */}
       <LoginButton />
-      <p className="px-8 text-center text-sm text-muted-foreground">
-        <Link
-          href="/register"
-          className="hover:text-brand underline underline-offset-4"
-        >
-          Don&apos;t have an account? Sign Up
-        </Link>
-      </p>
     </div>
   );
 }

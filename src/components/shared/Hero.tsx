@@ -14,8 +14,8 @@ const Hero = async () => {
       <MaxWidthWrapper>
         <div className="text-center space-y-4">
           <h1 className="text-2xl sm:text-4xl font-bold">
-            Find the best tools made by{' '}
-            <span className="text-purple-600">indie makers</span>
+            Find The Best Tools Made By{' '}
+            <span className="text-purple-600">Indie Makers</span>
           </h1>
           <p className="paragraph">
             The most complete tools database. Discover useful tools for all your

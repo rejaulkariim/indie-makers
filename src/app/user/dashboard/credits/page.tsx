@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import Checkout from '@/components/checkout/Checkout';
+import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
 import Header from '@/components/shared/header/Header';
 import { Button } from '@/components/ui/button';
 import { plans } from '@/constants';
@@ -8,17 +9,17 @@ import { plans } from '@/constants';
 const Credits = async () => {
   const user = 'true';
   return (
-    <>
-      <Header
-        title="Buy Credits"
-        subtitle="Choose a credit package that suits your needs!"
-      />
+    <section className="section-padding">
+      <MaxWidthWrapper>
+        <Header
+          title="Buy Credits"
+          subtitle="Choose a credit package that suits your needs!"
+        />
 
-      <section>
-        <ul className="grid grid-cols-2 md:grid-cols-3">
+        <ul className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
           {plans.map((plan) => (
-            <li key={plan.name} className="">
-              <div className="flex flex-col justify-center gap-3">
+            <li key={plan.name} className="border p-8 rounded-2xl">
+              <div className="flex flex-col justify-center items-center gap-3">
                 <Image src={plan.icon} alt="check" width={50} height={50} />
                 <p className="p-20-semibold mt-2 text-purple-500">
                   {plan.name}
@@ -60,8 +61,8 @@ const Credits = async () => {
             </li>
           ))}
         </ul>
-      </section>
-    </>
+      </MaxWidthWrapper>
+    </section>
   );
 };
 
