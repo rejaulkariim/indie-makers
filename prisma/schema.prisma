@@ -8,18 +8,18 @@ datasource db {
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -39,7 +39,6 @@ enum UserRole {
   USER
 }
 
-
 model VerificationToken {
   identifier String
   token      String   @unique
@@ -48,12 +47,10 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-
 model Wishlist {
-  id         String   @id @default(cuid())
-  email      String
+  id    String @id @default(cuid())
+  email String
 }
-
 
 // User Model
 model User {
@@ -66,19 +63,20 @@ model User {
   location      String?
   savedProducts String[]
   credits       Int       @default(10)
-  role          UserRole  @default(USER) 
+  role          UserRole  @default(USER)
   isActivated   Boolean   @default(true)
   isDeleted     Boolean   @default(false)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  accounts      Account[]
-  sessions      Session[]
-  
-  products      Product[]
+  accounts Account[]
+  sessions Session[]
+
+  products    Product[]
   // comments      Comment[]
   // tags          Tag[]
   // likes         Like[]
+  Transaction Transaction[]
 
   @@map("users")
 }
@@ -91,26 +89,25 @@ enum ProductStatus {
 }
 
 model Product {
-  id              String   @id @default(cuid())
-  name            String
-  slug            String
-  title           String
-  description     String
-  websiteUrl      String
-  imageUrl        String
-  views           Int      @default(0)
-  upvotes         Int      @default(0)
-  downvotes       Int      @default(0)
-  pricingModel    String
-  youtubeUrl      String?
-  isPromoted      Boolean? @default(false)
-  status          ProductStatus @default(NEW)
-  userId          User     @relation(fields: [createdBy], references: [id])
-  createdBy       String
+  id           String        @id @default(cuid())
+  name         String
+  slug         String
+  title        String
+  description  String
+  websiteUrl   String
+  imageUrl     String
+  views        Int           @default(0)
+  upvotes      Int           @default(0)
+  downvotes    Int           @default(0)
+  pricingModel String
+  youtubeUrl   String?
+  isPromoted   Boolean?      @default(false)
+  status       ProductStatus @default(NEW)
+  userId       User          @relation(fields: [createdBy], references: [id])
+  createdBy    String
 
-  
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("products")
 }
@@ -143,3 +140,17 @@ model Product {
 //   followers User[]
 //   createdAt DateTime @default(now())
 // }
+
+model Transaction {
+  id        String   @id @default(cuid())
+  plan      String
+  amount    Float
+  credits   Int
+  stripeId  String   @unique
+  buyerId   String
+  buyer     User     @relation(fields: [buyerId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("transactions")
+}

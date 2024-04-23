@@ -207,5 +207,4 @@ export type CreateTransactionParams = {
   credits: number;
   plan: string;
   buyerId: string;
-  createdAt: Date;
 };

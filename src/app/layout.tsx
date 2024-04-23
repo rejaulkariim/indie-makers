@@ -68,8 +68,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({
   children,
+  authModal,
 }: Readonly<{
   children: React.ReactNode;
+  authModal: React.ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -86,7 +88,10 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <div className="flex-grow flex-1">{children}</div>
+            <div className="flex-grow flex-1">
+              {authModal}
+              {children}
+            </div>
             <Toaster richColors position="top-right" />
           </ThemeProvider>
         </main>

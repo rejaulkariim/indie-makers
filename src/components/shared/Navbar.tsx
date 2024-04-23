@@ -1,13 +1,16 @@
 import { Icons } from '@/components/shared/icons/Icons';
 import { siteConfig } from '@/config/site';
+import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { getAuthSession } from '../../lib/auth';
+import { buttonVariants } from '../ui/button';
 import MaxWidthWrapper from './MaxWidthWrapper';
 import UserAvaters from './avaters/UserAvaters';
-import LoginButton from './button/LoginButton';
 
 const Navbar = async () => {
   const session = await getAuthSession();
+
+  console.log(session, 'session from navbar');
 
   return (
     <header className="bg-background h-14 flex justify-center items-center w-full fixed inset-0 z-40 border-b border-muted">
@@ -65,7 +68,21 @@ const Navbar = async () => {
 
             <ModeToggle /> */}
 
-            <div>{session?.user ? <UserAvaters /> : <LoginButton />}</div>
+            <div>
+              {session?.user ? (
+                <UserAvaters />
+              ) : (
+                <Link
+                  href="/login"
+                  className={cn(
+                    buttonVariants({ variant: 'ghost' }),
+                    'text-sm'
+                  )}
+                >
+                  Login
+                </Link>
+              )}
+            </div>
           </div>
         </nav>
       </MaxWidthWrapper>

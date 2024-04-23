@@ -1,4 +1,3 @@
-import CheckoutButton from '@/components/checkout/CheckoutButton';
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
 
 const DashboardPage = () => {
@@ -16,8 +15,6 @@ const DashboardPage = () => {
             <div className="block md:hidden">xxxxx</div>
           </div>
         </div>
-
-        <CheckoutButton />
       </MaxWidthWrapper>
     </section>
   );
