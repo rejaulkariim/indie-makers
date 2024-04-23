@@ -1,11 +1,13 @@
 'use server';
 
-import { CheckoutTransactionParams } from '@/types';
+import { CheckoutTransactionParams, CreateTransactionParams } from '@/types';
 import { redirect } from 'next/navigation';
 import Stripe from 'stripe';
+import { db } from '../db';
+import { updateCredits } from './user.action';
 
 export async function checkoutCredits(transaction: CheckoutTransactionParams) {
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
   const amount = Number(transaction.amount) * 100;
 
@@ -28,27 +30,34 @@ export async function checkoutCredits(transaction: CheckoutTransactionParams) {
       buyerId: transaction.buyerId,
     },
     mode: 'payment',
-    success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/profile`,
+    success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/user/dashboard/profile`,
     cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/`,
   });
 
   redirect(session.url!);
 }
 
-// export async function createTransaction(transaction: CreateTransactionParams) {
-//   try {
-//     await connectToDatabase();
+export async function createTransaction(transaction: CreateTransactionParams) {
+  console.log('Transaction data:', transaction);
+  try {
+    const newTransaction = await db.transaction.create({
+      data: {
+        ...transaction,
+        buyerId: transaction.buyerId,
+      },
+    });
 
-//     // Create a new transaction with a buyerId
-//     const newTransaction = await Transaction.create({
-//       ...transaction,
-//       buyer: transaction.buyerId,
-//     });
+    console.log('New transaction:', newTransaction);
 
-//     await updateCredits(transaction.buyerId, transaction.credits);
+    const updatedCredits = await updateCredits(
+      transaction.buyerId,
+      transaction.credits
+    );
 
-//     return JSON.parse(JSON.stringify(newTransaction));
-//   } catch (error) {
-//     handleError(error);
-//   }
-// }
+    console.log('Updated credits:', updatedCredits);
+
+    return JSON.parse(JSON.stringify(newTransaction));
+  } catch (error) {
+    console.log('Error:', error);
+  }
+}

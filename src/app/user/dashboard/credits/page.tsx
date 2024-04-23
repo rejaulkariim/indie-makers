@@ -5,9 +5,11 @@ import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
 import Header from '@/components/shared/header/Header';
 import { Button } from '@/components/ui/button';
 import { plans } from '@/constants';
+import { getAuthSession } from '@/lib/auth';
 
 const Credits = async () => {
-  const user = 'true';
+  const session = await getAuthSession();
+
   return (
     <section className="section-padding">
       <MaxWidthWrapper>
@@ -55,7 +57,7 @@ const Credits = async () => {
                   plan={plan.name}
                   amount={plan.price}
                   credits={plan.credits}
-                  buyerId={user}
+                  buyerId={session?.user?.id!}
                 />
               )}
             </li>

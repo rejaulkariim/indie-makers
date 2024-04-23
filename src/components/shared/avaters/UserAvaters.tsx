@@ -9,6 +9,7 @@ import {
 import { authOptions } from '@/lib/auth';
 import { getServerSession } from 'next-auth';
 import Image from 'next/image';
+import Link from 'next/link';
 import LogoutButton from '../button/LogoutButton';
 
 const UserAvaters = async () => {
@@ -25,10 +26,12 @@ const UserAvaters = async () => {
           className="h-8 w-8 object-contain rounded-full cursor-pointer focus:ring"
         />
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="border-none w-52 p-2 bg-rose-500">
+      <DropdownMenuContent className="border w-52 p-2 bg-card space-y-4">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Profile</DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href="/user/dashboard">Dashboard</Link>
+        </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <LogoutButton />
         </DropdownMenuItem>

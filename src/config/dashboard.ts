@@ -25,7 +25,7 @@ export const dashboardConfig = {
       icon: 'settings',
     },
     {
-      title: 'Credits',
+      title: 'Buy Credits',
       href: '/user/dashboard/credits',
       icon: 'settings',
     },
